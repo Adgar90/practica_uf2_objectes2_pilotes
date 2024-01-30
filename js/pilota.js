@@ -29,5 +29,13 @@ export class Pilota{
 
         this.x += this.velX;
         this.y += this.velY;
+    }
+    //Funció que rep una pilota per paràmetre i comprova la distància entre ambdues
+    collision(pilota) {
+     let difX = Math.abs(this.x - pilota.x);
+     let difY = Math.abs(this.y - pilota.y);
+     let distancia = Math.sqrt(difX**2 + difY**2);
+     // Sí colisiona retorna TRUE, si no, FALSE
+     return this.mida+pilota.mida >= distancia;
     } 
 }

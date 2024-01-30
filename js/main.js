@@ -33,35 +33,16 @@ function randomRGB() {
 let pilotes = [] //Variable que usarem per emmagatzemar Pilotes, o que bones
 //Funció per detectar si dues pilotes col·lisionen
 function detectCollision(){
-
   pilotes.forEach(i => {
     pilotes.forEach(j => {
-      if (collision(i, j)) {
-        // i.color = randomRGB();
-        // j.color = randomRGB();
+      if(i.x != j.x && i.y != j.y) {
+        if (i.collision(j)) {
+          i.color = randomRGB();
+          j.color = randomRGB();
+        }
       }
     })
   })
-}
-function collision(pilota1, pilota2) {
-  /* 
-    Punt en el que es troba la pilota --> és x,y
-    Calculem la diferencia d'X i d'Y:
-    difX = pilota1.x - pilota2.x
-    difY = pilota1.y - pilota2.y
-
-    si difX**2 + difY**2 <= pilota1.mida+pilota2.mida --> estan colisionant
-
-    la mida es el radi
-  */
- let difX = Math.abs(pilota1.x - pilota2.x);
- let difY = Math.abs(pilota1.y - pilota2.y);
- let distancia = Math.sqrt(difX**2 + difY**2);
- console.log(difX);
- console.log(difY);
- console.log(distancia);
- console.log(pilota1.mida+pilota2.mida);
- return pilota1.mida+pilota2.mida >= distancia;
 }
 /*
 Funció loop():
@@ -99,17 +80,4 @@ function loop() {
   requestAnimationFrame(loop);
 }
 
-// loop();
-
-
-ctx.fillStyle = "black";
-ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-
-let pilota = new Pilota(18, 52, 5, 5, randomRGB(), 10);
-let pilota2 = new Pilota(37, 55, 5, 5, randomRGB(), 10);
-
-pilota.dibuixa(ctx);
-pilota2.dibuixa(ctx);
-
-console.log(collision(pilota, pilota2));
+loop();
