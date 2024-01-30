@@ -29,5 +29,5 @@ export class Pilota{
 
         this.x += this.velX;
         this.y += this.velY;
-    }
+    } 
 }
